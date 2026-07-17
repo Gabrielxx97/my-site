@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabriel dos Santos Cunha — Currículo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f7f6;
+        --surface: #ffffff;
+        --card: #f0f2f0;
+        --primary: #1aa34a;
+        --text: #111111;
+        --muted: #5c5c5c;
+        --border: #e2e5e2;
+        --accent-line: #1db954;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 10pt;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 auto;
+        background: var(--surface);
+        display: grid;
+        grid-template-columns: 68mm 1fr;
+        overflow: hidden;
+      }
+
+      .sidebar {
+        background: linear-gradient(180deg, #f0f2f0 0%, #e8ece8 100%);
+        border-right: 1px solid var(--border);
+        padding: 52px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        height: 297mm;
+      }
+
+      .avatar-wrap {
+        display: flex;
+        justify-content: center;
+      }
+
+      .avatar {
+        width: 118px;
+        height: 118px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--accent-line);
+        box-shadow: 0 6px 18px rgba(26, 163, 74, 0.18);
+        background: #e8ece8;
+        flex-shrink: 0;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .sidebar h1 {
+        font-family: Poppins, sans-serif;
+        font-size: 16pt;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        text-align: center;
+      }
+
+      .sidebar .role {
+        margin-top: 4px;
+        font-family: Poppins, sans-serif;
+        font-size: 9.5pt;
+        font-weight: 600;
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .sidebar .location {
+        margin-top: 3px;
+        font-size: 8.5pt;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .personal-info {
+        list-style: none;
+        display: grid;
+        gap: 6px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .personal-info li {
+        font-size: 8.5pt;
+        color: var(--muted);
+      }
+
+      .personal-info strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .side-block h2 {
+        font-family: Poppins, sans-serif;
+        font-size: 8pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+
+      .contact-list,
+      .lang-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .contact-list li {
+        font-size: 8pt;
+        color: var(--muted);
+        word-break: break-word;
+      }
+
+      .contact-list strong {
+        display: block;
+        font-size: 7pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text);
+        margin-bottom: 1px;
+      }
+
+      .contact-list a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .skill-group {
+        margin-bottom: 10px;
+      }
+
+      .skill-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .skill-group h3 {
+        font-size: 7pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-bottom: 5px;
+      }
+
+      .skill-group ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .skill-group li {
+        display: inline-flex;
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 3px 8px;
+        font-size: 7.5pt;
+        font-weight: 500;
+        color: var(--text);
+      }
+
+      .lang-list li {
+        font-size: 8pt;
+        color: var(--muted);
+        padding-left: 10px;
+        position: relative;
+      }
+
+      .lang-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent-line);
+      }
+
+      .main {
+        padding: 52px 24px 20px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        height: 297mm;
+      }
+
+      .section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .section h2 {
+        font-family: Poppins, sans-serif;
+        font-size: 10.5pt;
+        font-weight: 700;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 10px;
+      }
+
+      .section h2::after {
+        content: '';
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-line), transparent);
+        border-radius: 999px;
+      }
+
+      .summary {
+        color: var(--muted);
+        font-size: 9pt;
+        line-height: 1.5;
+      }
+
+      .job {
+        padding: 10px 12px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 8px;
+        border-left: 3px solid var(--accent-line);
+      }
+
+      .job:last-child {
+        margin-bottom: 0;
+      }
+
+      .job-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+        margin-bottom: 3px;
+      }
+
+      .job-head h3 {
+        font-family: Poppins, sans-serif;
+        font-size: 9.5pt;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .job-head time {
+        font-size: 7.5pt;
+        font-weight: 600;
+        color: var(--primary);
+        white-space: nowrap;
+      }
+
+      .job-meta {
+        font-size: 8pt;
+        color: var(--muted);
+        margin-bottom: 5px;
+      }
+
+      .job-meta strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .job p {
+        font-size: 8.5pt;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .edu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .edu-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .edu-card time {
+        display: block;
+        font-size: 7.5pt;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 3px;
+      }
+
+      .edu-card h3 {
+        font-family: Poppins, sans-serif;
+        font-size: 9pt;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .edu-card p {
+        margin-top: 2px;
+        font-size: 8pt;
+        color: var(--muted);
+      }
+
+      .footer-note {
+        margin-top: auto;
+        padding-top: 6px;
+        font-size: 7pt;
+        color: #8a8a8a;
+        text-align: right;
+      }
+
+      @media print {
+        html,
+        body {
+          width: 210mm;
+          height: 297mm;
+          background: white;
+        }
+
+        .page {
+          margin: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <header>
+          <div class="avatar-wrap">
+            <div class="avatar">
+              <img src="./foto-avatar.png" alt="Gabriel dos Santos Cunha" />
+            </div>
+          </div>
+          <h1>Gabriel dos Santos Cunha</h1>
+          <p class="role">Desenvolvedor Front-end</p>
+          <p class="location">Osasco, SP</p>
+        </header>
+
+        <ul class="personal-info" aria-label="Dados pessoais">
+          <li><strong>Idade:</strong> 29 anos</li>
+          <li><strong>Estado civil:</strong> Solteiro</li>
+        </ul>
+
+        <section class="side-block">
+          <h2>Contato</h2>
+          <ul class="contact-list">
+            <li>
+              <strong>Email</strong>
+              <a href="mailto:gabrielsantospl@gmail.com">gabrielsantospl@gmail.com</a>
+            </li>
+            <li>
+              <strong>Telefone</strong>
+              <a href="https://wa.me/5511953393626">+55 11 95339-3626</a>
+            </li>
+            <li>
+              <strong>LinkedIn</strong>
+              <a href="https://www.linkedin.com/in/gabrielcunha9797/"
+                >linkedin.com/in/gabrielcunha9797</a
+              >
+            </li>
+            <li>
+              <strong>GitHub</strong>
+              <a href="https://github.com/Gabrielxx97">github.com/Gabrielxx97</a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="side-block">
+          <h2>Competências</h2>
+          <div class="skill-group">
+            <h3>Frontend</h3>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>Sass</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>React Native</li>
+              <li>Next.js</li>
+              <li>Tailwind CSS</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Backend</h3>
+            <ul>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>Python</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Database</h3>
+            <ul>
+              <li>Supabase</li>
+              <li>Strapi</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Tools</h3>
+            <ul>
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>VS Code</li>
+              <li>Cursor</li>
+              <li>Figma</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="side-block">
+          <h2>Idiomas</h2>
+          <ul class="lang-list">
+            <li>Português — Nativo</li>
+            <li>Inglês — Intermediário</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="section">
+          <h2>Resumo</h2>
+          <p class="summary">
+            Desenvolvedor Front-end com mais de 5 anos de experiência em interfaces modernas,
+            intuitivas e performáticas. Trajetória iniciada em TI e redes, com transição para
+            desenvolvimento web em 2021 na Venosa — de júnior a pleno. Foco em qualidade de código,
+            experiência do usuário e evolução contínua com React e ecossistema moderno.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>Experiência</h2>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Desenvolvedor Web Pleno</h3>
+              <time>Jan 2024 — Atual</time>
+            </div>
+            <p class="job-meta"><strong>Venosa</strong> · Osasco, SP</p>
+            <p>
+              Atuação com maior autonomia em interfaces, qualidade de código, entregas e colaboração
+              com o time de produto. Desenvolvimento de soluções web modernas para grandes empresas.
+            </p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Desenvolvedor Web Júnior</h3>
+              <time>Jan 2021 — Dez 2023</time>
+            </div>
+            <p class="job-meta"><strong>Venosa</strong> · Osasco, SP</p>
+            <p>
+              Início da carreira como desenvolvedor web, construindo bases em front-end, boas
+              práticas e entrega de sites e aplicações com interfaces interativas.
+            </p>
+          </article>
+
+          <article class="job">
+            <div class="job-head">
+              <h3>Técnico de suporte em TI</h3>
+              <time>Set 2016 — Dez 2020</time>
+            </div>
+            <p class="job-meta"><strong>Venosa</strong> · Osasco, SP</p>
+            <p>
+              Suporte técnico em TI com atendimento, manutenção e resolução de problemas de
+              infraestrutura e sistemas por mais de 4 anos.
+            </p>
+          </article>
+        </section>
+
+        <section class="section">
+          <h2>Formação acadêmica</h2>
+          <div class="edu-grid">
+            <article class="edu-card">
+              <time>2018 — 2019</time>
+              <h3>FIAP</h3>
+              <p>Graduação em Redes de Computadores</p>
+            </article>
+            <article class="edu-card">
+              <time>2014 — 2015</time>
+              <h3>ETEC — Albert Einstein</h3>
+              <p>Técnico em Informática</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Cursos recentes</h2>
+          <div class="edu-grid">
+            <article class="edu-card">
+              <time>2026</time>
+              <h3>Asimov Academy</h3>
+              <p>Cursor — Produtividade com IA no desenvolvimento</p>
+            </article>
+            <article class="edu-card">
+              <time>2026</time>
+              <h3>Asimov Academy</h3>
+              <p>Engenharia de Prompt</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

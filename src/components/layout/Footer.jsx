@@ -22,9 +22,9 @@ export default function Footer() {
             {SITE.name}
             <span className="text-[var(--primary)]">.</span>
           </p>
-          <p className="mt-1 text-sm text-[var(--muted)]">
+          {/* <p className="mt-1 text-sm text-[var(--muted)]">
             © {year} {SITE.name}. {t(footer.rights)}
-          </p>
+          </p> */}
           <p className="mt-1 text-xs text-[var(--muted)]">{t(footer.built)}</p>
         </div>
 

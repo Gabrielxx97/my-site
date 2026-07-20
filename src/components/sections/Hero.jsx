@@ -2,12 +2,21 @@ import { lazy, Suspense, useCallback, useState } from 'react'
 import { ArrowDown, ArrowDownRight, Download, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
+import { GitHubIcon, LinkedInIcon, WhatsAppIcon } from '@/components/ui/SocialIcons'
+import Shuffle from '@/components/effects/Shuffle'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { SITE, hero } from '@/data/content'
 import profileImage from '@/assets/eu.png'
 
 const PixelBlast = lazy(() => import('@/components/effects/PixelBlast'))
+
+const heroSocials = [
+  { href: SITE.socials.github, label: 'GitHub', icon: GitHubIcon },
+  { href: SITE.socials.linkedin, label: 'LinkedIn', icon: LinkedInIcon },
+  { href: SITE.socials.whatsapp, label: 'WhatsApp', icon: WhatsAppIcon },
+  { href: SITE.socials.email, label: 'Email', icon: Mail },
+]
 
 export default function Hero() {
   const { t, language } = useLanguage()
@@ -20,16 +29,11 @@ export default function Hero() {
     setInteractionElement(node)
   }, [])
 
-  const titleLines =
-    language === 'pt'
-      ? ['DESENVOLVEDOR', 'FRONT-END']
-      : ['FRONT-END', 'DEVELOPER']
-
   return (
     <section
       ref={heroRef}
       id="inicio"
-      className="relative flex h-[100svh] max-h-[100svh] overflow-hidden text-white"
+      className="relative flex h-[var(--hero-height)] max-h-[var(--hero-height)] flex-col overflow-hidden text-white"
       aria-labelledby="hero-name"
     >
       {/* z-0 — Pixel Blast full-bleed background */}
@@ -67,10 +71,11 @@ export default function Hero() {
       />
 
       {/* z-2 — content (events bubble to section → PixelBlast) */}
-      <div className="container-page relative z-[2] grid h-full w-full content-center items-center gap-6 bg-transparent pb-28 pt-20 md:gap-8 md:pb-28 md:pt-[4.25rem] lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="container-page relative z-[2] grid min-h-0 w-full flex-1 content-center items-center gap-6 bg-transparent md:gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative max-w-2xl bg-transparent">
           <motion.p
-            className="mb-5 text-sm font-medium uppercase tracking-[0.28em] text-[#1DB954]"
+            className="mb-2 text-sm font-bold uppercase tracking-[0.28em] text-white/85"
+            style={{ textShadow: '0 4px 4px #000' }}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -78,50 +83,99 @@ export default function Hero() {
             {t(hero.greeting)}
           </motion.p>
 
-          <h1 id="hero-name" className="font-display">
-            <span className="hero-title block text-white">
-              {firstName}
-            </span>
-            <span className="hero-title mt-1 block text-white/95">
-              {lastName}
-            </span>
+          <h1 id="hero-name" className="font-display flex flex-col items-start">
+            <Shuffle
+              text={firstName}
+              tag="span"
+              className="hero-title w-full text-white"
+              style={{ textShadow: '0 4px 4px #000', display: 'block' }}
+              textAlign="left"
+              shuffleDirection="right"
+              duration={0.4}
+              shuffleTimes={1}
+              animationMode="evenodd"
+              stagger={0.03}
+              threshold={0.1}
+              rootMargin="0px"
+              triggerOnce
+              triggerOnHover
+              respectReducedMotion
+            />
+            <Shuffle
+              text={lastName}
+              tag="span"
+              className="hero-title mt-1 w-full text-white/95"
+              style={{ textShadow: '0 4px 4px #000', display: 'block' }}
+              textAlign="left"
+              shuffleDirection="right"
+              duration={0.4}
+              shuffleTimes={1}
+              animationMode="evenodd"
+              stagger={0.03}
+              threshold={0.1}
+              rootMargin="0px"
+              triggerOnce
+              triggerOnHover
+              respectReducedMotion
+            />
           </h1>
 
           <motion.div
-            className="mt-5 space-y-1"
+            className="mt-2 space-y-1"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
           >
-            {titleLines.map((line) => (
-              <p
-                key={line}
-                className="hero-subtitle font-sans uppercase tracking-[0.14em] text-white/85"
-              >
-                {line}
-              </p>
-            ))}
+            <Shuffle
+              text={t(SITE.role)}
+              tag="p"
+              className="hero-subtitle font-sans uppercase tracking-[0.14em] text-white/85" 
+              style={{ textShadow: '2px 2px 0 #000' }}
+              textAlign="left"
+              shuffleDirection="right"
+              duration={0.35}
+              shuffleTimes={1}
+              animationMode="evenodd"
+              stagger={0.03}
+              threshold={0.1}
+              rootMargin="0px"
+              triggerOnce
+              triggerOnHover
+              respectReducedMotion
+            />
           </motion.div>
 
-          <motion.p
-            className="hero-description hero-text-shadow mt-6 max-w-md"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.35 }}
-          >
-            {t(hero.description)}
-          </motion.p>
-
-          <motion.div
+          {/* <motion.div
             className="mt-9 flex flex-wrap gap-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.45 }}
-          >
-            <Button href="#servicos" disableMotion>
+          > */}
+            {/* <Button href="#servicos" disableMotion>
               {t(hero.ctaProjects)}
               <ArrowDownRight size={16} aria-hidden="true" />
-            </Button>
+            </Button> */}
+            
+          {/* </motion.div> */}
+
+          <motion.div
+            className="mt-2 flex flex-wrap items-center gap-5"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            {heroSocials.map(({ href, label, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.06] text-white/80 backdrop-blur-sm transition hover:border-[#1DB954] hover:bg-[#1DB954]/10 hover:text-[#1DB954]"
+              >
+                <Icon size={18} aria-hidden="true" />
+              </a>
+            ))}
             <Button
               href={SITE.cvUrl}
               variant="secondary"
@@ -132,42 +186,97 @@ export default function Hero() {
               <Download size={16} aria-hidden="true" />
               {t(hero.ctaCv)}
             </Button>
-            <Button
-              href="#contato"
-              variant="ghost"
-              disableMotion
-              className="border-white/20 bg-white/[0.06] text-white backdrop-blur-sm hover:border-[#1DB954] hover:text-[#1DB954]"
-            >
-              <Mail size={16} aria-hidden="true" />
-              {t(hero.ctaContact)}
-            </Button>
           </motion.div>
         </div>
 
         <motion.div
-          className="relative mx-auto flex w-full max-w-[26rem] items-center justify-center bg-transparent sm:max-w-[32rem] lg:max-w-none lg:justify-end"
+          className="relative mx-auto flex w-full max-w-[22rem] items-center justify-center overflow-visible bg-transparent sm:max-w-[26rem] lg:max-w-none lg:justify-end"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative flex w-full items-center justify-center bg-transparent lg:justify-end">
-            <img
-              src={profileImage}
-              alt={`${SITE.name} — ${t(SITE.role)}`}
-              width={900}
-              height={1200}
-              className="mx-auto h-auto max-h-[calc(100svh-14rem)] w-[min(100%,20rem)] select-none bg-transparent object-contain object-center drop-shadow-[0_20px_60px_rgba(29,185,84,0.18)] sm:max-h-[calc(100svh-12rem)] sm:w-[min(100%,26rem)] lg:mx-0 lg:max-h-[calc(100svh-10rem)] lg:w-[min(65%,32rem)]"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
+          {/*
+            Pop-out da referência:
+            - aro verde atrás
+            - corpo clipado no círculo INTERNO do aro
+            - camada da cabeça (topo) sem clip circular → sai por cima
+          */}
+          <div
+            className="hero-portrait relative mx-auto w-[min(100%,16.5rem)] overflow-visible sm:w-[min(100%,19rem)] lg:mx-0 lg:w-[min(100%,22rem)]"
+            style={{ aspectRatio: '1 / 1.5' }}
+          >
+            {/* glow */}
+            <div
+              className="pointer-events-none absolute bottom-0 left-0 aspect-square w-full rounded-full opacity-50 blur-2xl"
+              style={{
+                background:
+                  'radial-gradient(circle, var(--glow) 0%, transparent 70%)',
+              }}
+              aria-hidden="true"
             />
+
+            {/* 1º aro */}
+            <div
+              className="absolute bottom-0 left-0 z-0 aspect-square w-full rounded-full p-[0.8rem]"
+              style={{
+                background:
+                  'linear-gradient(145deg, var(--primary-hover), var(--primary) 55%, color-mix(in srgb, var(--primary) 35%, #050505))',
+                boxShadow:
+                  '0 14px 36px color-mix(in srgb, var(--primary) 30%, transparent), inset 0 1px 0 color-mix(in srgb, var(--primary-hover) 50%, white)',
+              }}
+              aria-hidden="true"
+            >
+              <div
+                className="h-full w-full rounded-full"
+                style={{
+                  background:
+                    'radial-gradient(circle at 40% 28%, color-mix(in srgb, var(--surface) 60%, var(--primary)), #0a0a0a 80%)',
+                  boxShadow: 'inset 0 2px 12px rgba(0,0,0,0.55)',
+                }}
+              />
+            </div>
+
+            {/* corpo: só o disco interno — enquadramento cintura → cima */}
+            <div className="absolute bottom-[0.8rem] left-[0.8rem] right-[0.8rem] z-[1] aspect-square overflow-hidden rounded-full">
+              <img
+                src={profileImage}
+                alt={`${SITE.name} — ${t(SITE.role)}`}
+                width={474}
+                height={1024}
+                className="absolute left-1/2 w-auto max-w-none -translate-x-1/2 select-none object-contain object-bottom"
+                style={{ height: '168%', bottom: '-34%' }}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </div>
+
+            {/* cabeça: mesma foto, só a faixa superior (ultrapassa o aro) */}
+            <div
+              className="pointer-events-none absolute inset-0 z-[2] overflow-visible"
+              style={{ clipPath: 'inset(0 0 42% 0)' }}
+              aria-hidden="true"
+            >
+              <div className="absolute bottom-[0.8rem] left-[0.8rem] right-[0.8rem] aspect-square">
+                <img
+                  src={profileImage}
+                  alt=""
+                  width={474}
+                  height={1024}
+                  className="absolute left-1/2 w-auto max-w-none -translate-x-1/2 select-none object-contain object-bottom"
+                  style={{ height: '168%', bottom: '-34%' }}
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
 
       <a
         href="#sobre"
-        className="absolute bottom-8 left-1/2 z-[3] inline-flex -translate-x-1/2 items-center gap-3 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.22em] text-white/65 transition hover:text-[#1DB954]"
+        className="relative z-[3] mx-auto mb-8 inline-flex shrink-0 items-center gap-3 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.44em] text-white/65 transition hover:text-[#1DB954]"
       >
         <motion.span
           animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
@@ -177,7 +286,7 @@ export default function Hero() {
               : { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }
           }
         >
-          <ArrowDown size={16} aria-hidden="true" />
+          <ArrowDown size={20} aria-hidden="true" />
         </motion.span>
         {t(hero.scrollDown)}
       </a>

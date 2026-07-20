@@ -2,8 +2,8 @@ export const SITE = {
   name: 'Gabriel Cunha',
   age: 29,
   role: {
-    pt: 'Desenvolvedor Front-end',
-    en: 'Front-end Developer',
+    pt: 'Web Developer',
+    en: 'Web Developer',
   },
   email: 'gabrielsantospl@gmail.com',
   phone: '+5511953393626',
@@ -41,7 +41,7 @@ export const hero = {
   ctaProjects: { pt: 'Ver Serviços', en: 'View Services' },
   ctaCv: { pt: 'Download CV', en: 'Download CV' },
   ctaContact: { pt: 'Entrar em Contato', en: 'Get in Touch' },
-  scrollDown: { pt: 'Scroll down', en: 'Scroll down' },
+  scrollDown: { pt: 'Saiba mais', en: 'Learn more' },
 }
 
 export const about = {

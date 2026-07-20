@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ThemeToggle from '@/components/ui/ThemeToggle'
@@ -11,6 +11,7 @@ export default function Navbar() {
   const { t } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const navRef = useRef(null)
   const ids = navItems.map((item) => item.id)
   const activeId = useScrollSpy(ids)
 
@@ -28,6 +29,27 @@ export default function Navbar() {
     }
   }, [open])
 
+  // Sticky occupies flow space — publish real bar height for hero calc
+  useEffect(() => {
+    const nav = navRef.current
+    if (!nav) return
+
+    const syncNavHeight = () => {
+      const height = nav.getBoundingClientRect().height
+      document.documentElement.style.setProperty('--nav-height', `${height}px`)
+    }
+
+    syncNavHeight()
+    const observer = new ResizeObserver(syncNavHeight)
+    observer.observe(nav)
+    window.addEventListener('resize', syncNavHeight)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', syncNavHeight)
+    }
+  }, [])
+
   const linkClass = (id) =>
     `rounded-xl px-3 py-2 text-sm font-medium transition ${
       activeId === id
@@ -37,11 +59,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled ? 'glass shadow-[var(--shadow-soft)]' : 'bg-transparent'
       }`}
     >
       <nav
+        ref={navRef}
         className="container-page flex h-16 items-center justify-between gap-4 sm:h-[4.25rem]"
         aria-label="Primary"
       >

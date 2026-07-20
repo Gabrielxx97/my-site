@@ -99,7 +99,7 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(2.8rem, 8vw, 4rem);
+  font-size: clamp(calc(2rem + 10px), 9vw, calc(2.6rem + 10px));
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -107,15 +107,16 @@ body {
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  color: var(--primary);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .hero-description {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.55;
   color: #e5e7eb;
 }
 
@@ -123,23 +124,40 @@ body {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
 }
 
+@media (min-width: 480px) {
+  .hero-title {
+    font-size: clamp(calc(2.4rem + 10px), 8vw, calc(3.25rem + 10px));
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+}
+
 @media (min-width: 768px) {
   .hero-title {
-    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    font-size: clamp(calc(3.5rem + 10px), 7vw, calc(5.5rem + 10px));
   }
 
   .hero-subtitle {
     font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .hero-description {
     font-size: 1.1rem;
+    line-height: 1.8;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-title {
-    font-size: clamp(4.5rem, 8vw, 7rem);
+    font-size: clamp(calc(4.5rem + 10px), 8vw, calc(7rem + 10px));
   }
 
   .hero-subtitle {
@@ -148,6 +166,23 @@ body {
 
   .hero-description {
     font-size: 1.2rem;
+  }
+}
+
+/* Telas baixas (ex.: iPhone SE 375×667): compactar para caber tudo na viewport */
+@media (max-height: 720px) and (max-width: 640px) {
+  .hero-title {
+    font-size: clamp(calc(1.75rem + 10px), 8vw, calc(2.15rem + 10px));
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-description {
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
 }
 
